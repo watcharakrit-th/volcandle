@@ -1,0 +1,20 @@
+[package]
+name = "volcandle"
+version = "0.1.0"
+edition = "2021"
+description = "TradingView-style volume candles (candle width = volume) for any OHLCV file: CSV, TSV, JSON or Excel"
+license = "MIT"
+
+[dependencies]
+calamine = "0.38"
+csv = "1.4"
+eframe = { version = "0.31", default-features = false, features = ["default_fonts", "glow", "x11", "persistence"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.dev]
+opt-level = 1
+
+# Parsing large files and painting thousands of candles needs optimized dependencies.
+[profile.dev.package."*"]
+opt-level = 3
